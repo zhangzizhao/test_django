@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
+SITE_ROOT=os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
+STATIC_ROOT = os.path.join(SITE_ROOT,'static')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -21,6 +21,8 @@ SECRET_KEY = 'ev%^!kbzh(3=xo32t%ydodxk&=^gfxugu_!$u(#@w_5__u9z*u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
+
 
 TEMPLATE_DEBUG = True
 
@@ -98,12 +100,21 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(BASE_DIR),'static','templates'),
     #os.path.join('/home/xiaoju/mywork/ianwoolf/static/templates/'),
 )
+#STATICFILES_DIRS = (
+#    (STTATIC_ROOT,
+#    ("css", os.path.join(STATIC_ROOT,'css')),
+#    ("js", os.path.join(STATIC_ROOT,'js')),
+#    ("images", os.path.join(STATIC_ROOT,'images')),
+#)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'bower_components'),
+    os.path.join(BASE_DIR, 'static'),
+os.path.join(os.path.join(os.path.dirname(BASE_DIR), 'static') ))
 
-if DEBUG:
+if  DEBUG:
     MEDIA_URL = '/media/'
     STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'static-only') 
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'media')
-    STATICFILES_DIRS =(
+    STATICFILES_DIRS =[(
                       os.path.join(os.path.dirname(BASE_DIR),'static','static')
-                      )
-    #STATIC_URL
+                      )]    #STATIC_URL
