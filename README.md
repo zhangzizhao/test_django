@@ -7,3 +7,5 @@ begin your project!
 	with admin.py form.py model.py
 11.5
 python manage.py collectstatic
+11.8
+branch my_rest
