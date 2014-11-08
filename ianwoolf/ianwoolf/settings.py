@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-SITE_ROOT=os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
-STATIC_ROOT = os.path.join(SITE_ROOT,'static')
+#SITE_ROOT=os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -106,12 +106,19 @@ TEMPLATE_DIRS = (
 #    ("js", os.path.join(STATIC_ROOT,'js')),
 #    ("images", os.path.join(STATIC_ROOT,'images')),
 #)
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'bower_components'),
-    os.path.join(BASE_DIR, 'static'),
-os.path.join(os.path.join(os.path.dirname(BASE_DIR), 'static') ))
-
-if  DEBUG:
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'bower_components'),
+#    os.path.join(BASE_DIR, 'static/staic'),
+#os.path.join(os.path.join(os.path.dirname(BASE_DIR), 'static') ))
+#STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'static') 
+#MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'media')
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'static') 
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'media')
+STATICFILES_DIRS =[(
+                 os.path.join(os.path.dirname(BASE_DIR),'static_debug/static-only')
+                 )]
+if  not DEBUG:
     MEDIA_URL = '/media/'
     STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'static-only') 
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'media')
