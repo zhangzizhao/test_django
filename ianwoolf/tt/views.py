@@ -13,6 +13,9 @@ from rest_framework.parsers import JSONParser
 from tt.models import people
 from tt.serializers import peopleSerializer
 #~~  begin
+#api_view
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 def home(request):
     form = peopleForm(request.POST or None)            #form model
     if form.is_valid():
@@ -25,17 +28,17 @@ def home(request):
 #~~~~~~~~~~~~~~~~
 #ser begin
 
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
+#class JSONResponse(HttpResponse):
+#    """
+#    An HttpResponse that renders its content into JSON.
+#    """
+#    def __init__(self, data, **kwargs):
+#        content = JSONRenderer().render(data)
+#        kwargs['content_type'] = 'application/json'
+#        super(JSONResponse, self).__init__(content, **kwargs)
 
-@csrf_exempt
-def snippet_list(request):
+@api_view(['GET','POST'])
+def snippet_list(request, format=None):
     """
     List all code snippets, or create a new snippet.
     """
@@ -43,7 +46,7 @@ def snippet_list(request):
         snippets = people.objects.all()
         serializer = peopleSerializer(snippets, many=True)
         #serializer = peopleSerializer(people)
-        return JSONResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
@@ -51,33 +54,32 @@ def snippet_list(request):
         if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data, status=201)
-        return JSONResponse(serializer.errors, status=400)
-# Create your views here.
-@csrf_exempt
-def snippet_detail(request, pk):
+        return Response(serializer.errors, status=400)
+@api_view(['GET','PUT','DELETE'])
+def snippet_detail(request, pk, format=None):
     """
     Retrieve, update or delete a code snippet.
     """
     try:
         snippet = people.objects.get(pk=pk)
     except people.DoesNotExist:
-        return HttpResponse(status=404)
+        return Response(status=404)
 
     if request.method == 'GET':
         serializer = peopleSerializer(snippet)
-        return JSONResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
         serializer = peopleSerializer(snippet, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JSONResponse(serializer.data)
-        return JSONResponse(serializer.errors, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
         snippet.delete()
-        return HttpResponse(status=204)
+        return Response(status=204)
 
 
 
