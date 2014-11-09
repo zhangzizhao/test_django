@@ -10,6 +10,7 @@ python manage.py collectstatic
 #11.8
 branch my_rest
 #11.9 
+git commit -m "rest_form  tutorial-3"
 branch request & require
 curl http://10.10.8.32:8000/tt/people/ -H 'Accept: text/html'
 curl http://10.10.8.32:8000/tt/people/ -H 'Accept: application/json'
