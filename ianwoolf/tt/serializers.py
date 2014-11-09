@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+from tt.models import people
 from rest_framework import serializers
 
 
@@ -10,3 +11,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ('url', 'name')
+class peopleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = people
+        fields = ('id','name','city','Email')
