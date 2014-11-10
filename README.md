@@ -10,7 +10,6 @@ python manage.py collectstatic
 #11.8
 branch my_rest
 #11.9 
-https://github.com/zhangzizhao/test_django/tree/my_rest   rutorial  request & require
 curl http://10.10.8.32:8000/tt/people/ -H 'Accept: text/html'
 curl http://10.10.8.32:8000/tt/people/ -H 'Accept: application/json'
 curl -X POST http://10.10.8.32:8000/tt/people/ -d '{"name":"test","city":"test","Email":"test@test.com"}'

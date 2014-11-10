@@ -13,15 +13,9 @@ from rest_framework.parsers import JSONParser
 from tt.models import people
 from tt.serializers import peopleSerializer
 #~~  begin
-#tu 2 api_view
+#api_view
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-#tu3 base view
-from django.http import Http404
-from rest_framework.views import APIView
-from rest_framework import status
-#from rest_framework.response import Response
-
 def home(request):
     form = peopleForm(request.POST or None)            #form model
     if form.is_valid():
@@ -31,8 +25,8 @@ def home(request):
                               locals(),
                               context_instance=RequestContext(request))
 
-#~~~~~~~~~~~~~~~~~~~~~~~
-#tu2 api_view begin
+#~~~~~~~~~~~~~~~~
+#ser begin
 
 #class JSONResponse(HttpResponse):
 #    """
@@ -86,51 +80,11 @@ def snippet_detail(request, pk, format=None):
     elif request.method == 'DELETE':
         snippet.delete()
         return Response(status=204)
-# ser end     
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# tu3 base view begin
-class PeopleList(APIView):
-    def get(self, request, format=None):
-        this_people = people.objects.all()
-        print this_people
-        serializer = peopleSerializer(this_people, many=True)
-        print "done",serializer.data
-        print serializer.data
-        print "done"
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = peopleSerializer(data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class PeopleDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return people.objects.get(pk=pk)
-        except people.DoseNotExist:
-            raise Http404
-    def get(self, request, pk, format=None):
-        this_people = self.get_object(pk)
-        serializer = peopleSerializer(this_people)
-        return Response(serializer.data)
-    def put(self, request, pk, format=None):
-        this_people = self.get_object(pk)
-        serializer = peopleSerializer(this_people, data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    def delete(self, request, pk, format=None):
-        this_people = self.get_object(pk)
-        this_people.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-#
-## tu3 end  
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
+
+# ser end
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.

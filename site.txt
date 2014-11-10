@@ -1,0 +1,8 @@
+https://github.com/zhangzizhao/test_django/tree/my_rest   rutorial  request & require
+https://pythonhosted.org/django_simple_feedback/topics/forms/modelforms.html
+http://sns.hwcrazy.com/django/ref/models/options/index.html
+https://docs.djangoproject.com/en/dev/topics/serialization/#serialization-formats-json
+
+go:
+http://mikespook.com/learning-go/
+http://blog.csdn.net/marshalchen/article/details/12401597
