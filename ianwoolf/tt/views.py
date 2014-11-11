@@ -20,6 +20,10 @@ from rest_framework.response import Response
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework import status
+#~
+from rest_framework import mixins
+from rest_framework import generics
+
 #from rest_framework.response import Response
 
 def home(request):
@@ -126,7 +130,35 @@ class PeopleDetail(APIView):
         this_people = self.get_object(pk)
         this_people.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-#
+#~
+class PeopleList2(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = people.objects.all()
+    serializer_class = peopleSerializer
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+class PeopleDetail2(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin,  generics.GenericAPIView):
+    queryset = people.objects.all()
+    serializer_class = peopleSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+#~
+class PeopleList3(generics.ListCreateAPIView):
+    queryset = people.objects.all()
+    serializer_class = peopleSerializer
+
+
+class PeopleDetail3(generics.RetrieveUpdateDestroyAPIView):
+    queryset = people.objects.all()
+    serializer_class = peopleSerializer
 ## tu3 end  
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

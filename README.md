@@ -13,3 +13,5 @@ branch my_rest
 curl http://10.10.8.32:8000/tt/people/ -H 'Accept: text/html'
 curl http://10.10.8.32:8000/tt/people/ -H 'Accept: application/json'
 curl -X POST http://10.10.8.32:8000/tt/people/ -d '{"name":"test","city":"test","Email":"test@test.com"}'
+#11.10 11
+use APIView Mixin generics
