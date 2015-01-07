@@ -71,8 +71,8 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'NAME': 'django',
         'USER': 'root',
-        'PORT': 3366,
-        'PASSWORD': '',
+        'PORT': 3306,
+        'PASSWORD': 'MhxzKhl',
         'TEST_NAME': 'test_huston',
     }
 }
