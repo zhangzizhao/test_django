@@ -72,7 +72,7 @@ DATABASES = {
         'NAME': 'django',
         'USER': 'root',
         'PORT': 3306,
-        'PASSWORD': '',
+        'PASSWORD': 'MhxzKhl',
         'TEST_NAME': 'test_huston',
     }
 }

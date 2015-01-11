@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^32people/(?P<pk>[0-9]+)/$', views.PeopleDetail2.as_view()),
     url(r'^33people/$', views.PeopleList3.as_view()),
     url(r'^33people/(?P<pk>[0-9]+)/$', views.PeopleDetail3.as_view()),
+    url(r'^my/$', 'tt.views.myown'),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

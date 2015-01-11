@@ -177,3 +177,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+def myown(request):
+#    form = peopleForm(request.POST or None)            #form model
+#    if form.is_valid():
+#        save_it = form.save(commit=False)
+#        save_it.save()
+    return render_to_response("test.html",
+                             )
