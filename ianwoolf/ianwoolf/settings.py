@@ -115,13 +115,12 @@ TEMPLATE_DIRS = (
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'static') 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'media')
-STATICFILES_DIRS =[(
-                 os.path.join(os.path.dirname(BASE_DIR),'static_debug/static-only')
-                 )]
+STATICFILES_DIRS =(
+                  ("css",os.path.join(os.path.dirname(BASE_DIR),'static','static','css')),
+                  ("img",os.path.join(os.path.dirname(BASE_DIR),'static','static','img')),
+                  ("js",os.path.join(os.path.dirname(BASE_DIR),'static','static','js')),
+                  )    #STATIC_URL
 if  not DEBUG:
     MEDIA_URL = '/media/'
-    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'static-only') 
+#    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'static') 
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static', 'media')
-    STATICFILES_DIRS =[(
-                      os.path.join(os.path.dirname(BASE_DIR),'static','static')
-                      )]    #STATIC_URL
