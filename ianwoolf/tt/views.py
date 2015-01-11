@@ -25,7 +25,7 @@ from rest_framework import mixins
 from rest_framework import generics
 
 #from rest_framework.response import Response
-
+from django.conf import settings 
 def home(request):
     form = peopleForm(request.POST or None)            #form model
     if form.is_valid():
@@ -179,9 +179,8 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 def myown(request):
-#    form = peopleForm(request.POST or None)            #form model
-#    if form.is_valid():
-#        save_it = form.save(commit=False)
-#        save_it.save()
     return render_to_response("test.html",
+                             )
+def myown2(request):
+    return render_to_response("back.html",
                              )
